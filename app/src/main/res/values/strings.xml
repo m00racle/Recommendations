@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Recommendations</string>
+    <string name="description_listing_image">listing image</string>
 </resources>
