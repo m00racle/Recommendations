@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.ideproject.mooracle.recommendations.MainActivity;
 import com.ideproject.mooracle.recommendations.R;
 import com.ideproject.mooracle.recommendations.model.ActiveListings;
 import com.ideproject.mooracle.recommendations.model.Listing;
@@ -19,10 +20,13 @@ import retrofit.client.Response;
 public class ListingsAdapter extends RecyclerView.Adapter<ListingsAdapter.ListingsHolder>
         implements Callback<ActiveListings> {
     private LayoutInflater inflater;
-
     private ActiveListings activeListings;
-    public ListingsAdapter(Context context) {
-        inflater = LayoutInflater.from(context);
+    private MainActivity activity;
+
+    //constructor
+    public ListingsAdapter(MainActivity activity) {
+        this.activity = activity;
+        inflater = LayoutInflater.from(activity);
     }
 
     @NonNull
@@ -59,11 +63,16 @@ public class ListingsAdapter extends RecyclerView.Adapter<ListingsAdapter.Listin
     public void success(ActiveListings activeListings, Response response) {
         this.activeListings = activeListings;
         notifyDataSetChanged();
+        this.activity.showList();
     }
 
     @Override
     public void failure(RetrofitError error) {
+        this.activity.showError();
+    }
 
+    public ActiveListings getActiveListings (){
+        return activeListings;
     }
 
     public class ListingsHolder extends RecyclerView.ViewHolder {

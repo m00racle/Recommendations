@@ -1,6 +1,8 @@
 package com.ideproject.mooracle.recommendations.api;
 
 
+import com.ideproject.mooracle.recommendations.model.ActiveListings;
+import retrofit.Callback;
 import retrofit.RequestInterceptor;
 import retrofit.RestAdapter;
 
@@ -26,4 +28,7 @@ public class Etsy {
                 .create(Api.class);
     }
 
+    public static void getActiveListings(Callback<ActiveListings> callback){
+        getApi().activeListings("Shop,Images", callback);
+    }
 }
