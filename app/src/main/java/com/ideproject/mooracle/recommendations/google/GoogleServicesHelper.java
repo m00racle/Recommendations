@@ -36,9 +36,8 @@ GoogleApiClient.OnConnectionFailedListener{
     private static final int REQUEST_CODE_AVAILABILITY = -101;
 
     //constructor:
-
-
-    public GoogleServicesHelper(GoogleApiClient apiClient, Activity activity, GoogleServicesListener listener) {
+    // little mistakes here since I put apiClient as argument for constructor whilst it was already defined:
+    public GoogleServicesHelper(Activity activity, GoogleServicesListener listener) {
 
         this.activity = activity;
         this.listener = listener;
